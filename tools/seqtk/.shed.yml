@@ -1,0 +1,6 @@
+categories:
+- Fasta Manipulation
+description: seqtk_seq
+long_description: Tool for converting FASTQ files into FASTA files
+name: seqtk_seq
+owner: ofgeha

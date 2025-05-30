@@ -1,0 +1,109 @@
+<!-- <macros>
+    <xml name="requirements">
+        <requirements>
+        <requirement type="package" version="@TOOL_VERSION@">seqtk</requirement>
+            <yield/>
+        </requirements>
+    </xml>
+    <xml name="citations">
+        <citations>
+            <citations type="bibtex">
+                @article{Shen2016,
+                    title = {SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation},
+                    volume = {11},
+                    ISSN = {1932-6203},
+                    url = {http://dx.doi.org/10.1371/journal.pone.0163962},
+                    DOI = {10.1371/journal.pone.0163962},
+                    number = {10},
+                    journal = {PLOS ONE},
+                    publisher = {Public Library of Science (PLoS)},
+                    author = {Shen,  Wei and Le,  Shuai and Li,  Yan and Hu,  Fuquan},
+                    editor = {Zou,  Quan},
+                    year = {2016},
+                    month = oct,
+                    pages = {e0163962}
+                }
+            </citations>
+            <citation type="bio.tools">seqtk</citation>
+            <yield />
+        </citations>
+    </xml>
+    <token name="@TOOL_VERSION">1.3</token>
+    <token name="@VERSION_SUFFIX@">0</token>
+</macros> -->
+
+
+<!-- <macros>
+    <xml name="requirements">
+        <requirements>
+            <requirement type="package" version="@TOOL_VERSION@">seqtk</requirement>
+            <yield/>
+        </requirements>
+    </xml>
+
+    <xml name="citations">
+        <citations>
+            <citation type="bibtex">
+@article{Shen2016,
+    title = {SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation},
+    volume = {11},
+    ISSN = {1932-6203},
+    url = {http://dx.doi.org/10.1371/journal.pone.0163962},
+    DOI = {10.1371/journal.pone.0163962},
+    number = {10},
+    journal = {PLOS ONE},
+    publisher = {Public Library of Science (PLoS)},
+    author = {Shen, Wei and Le, Shuai and Li, Yan and Hu, Fuquan},
+    editor = {Zou, Quan},
+    year = {2016},
+    month = oct,
+    pages = {e0163962}
+}
+            </citation>
+            <citation type="bio.tools">seqtk</citation>
+            <yield />
+        </citations>
+    </xml>
+
+    <token name="@TOOL_VERSION">1.3</token>
+    <token name="@VERSION_SUFFIX@">0</token>
+</macros> -->
+
+
+
+
+
+<macros>
+    <xml name="requirements">
+        <requirements>
+            <requirement type="package" version="@TOOL_VERSION@">seqtk</requirement>
+            <yield/>
+        </requirements>
+    </xml>
+
+    <xml name="citations">
+        <citations>
+            <citation type="bibtex">
+                @article{Shen2016,
+                    title = {SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation},
+                    volume = {11},
+                    ISSN = {1932-6203},
+                    url = {http://dx.doi.org/10.1371/journal.pone.0163962},
+                    DOI = {10.1371/journal.pone.0163962},
+                    number = {10},
+                    journal = {PLOS ONE},
+                    publisher = {Public Library of Science (PLoS)},
+                    author = {Shen, Wei and Le, Shuai and Li, Yan and Hu, Fuquan},
+                    editor = {Zou, Quan},
+                    year = {2016},
+                    month = oct,
+                    pages = {e0163962}
+                }
+            </citation>
+            <yield />
+        </citations>
+    </xml>
+
+    <token name="@TOOL_VERSION">1.3</token>
+    <token name="@VERSION_SUFFIX@">0</token>
+</macros>

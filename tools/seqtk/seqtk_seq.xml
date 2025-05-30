@@ -1,0 +1,133 @@
+<tool id="seqtk_seq" name="Convert to FASTA (seqtk)" version="1.3.0" python_template_version="3.5" profile="20.01">
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <!-- <expand macro="citations" /> -->
+    <!-- <expand macro="biotools" /> -->
+    <command detect_errors="exit_code"><![CDATA[
+        seqtk seq
+        -q $q
+        -f $f
+        $c
+        -X $X
+        -n '$n'
+        -l $l
+        -Q $Q
+        -s $s
+        -M '$M'
+        -L $L
+        $r
+        $A
+        $C
+        $N
+        $x1
+        $x2
+        '$input1' > '$output1'    
+    ]]></command>
+
+
+
+
+
+    <inputs>
+        <param type="data" name="input1" format="fastq" />
+        <param argument="-q" type="integer" min="0" value="0" label="mask bases with quality lower than INT" help="Default: 0" />
+        <param argument="-f" type="float" min="0" max="1" value="1" label="sample FLOAT fraction of sequences" help="Default: 1" />
+        <param argument="-c" type="boolean" truevalue="-c" falsevalue="" checked="False" label="mask complement region" help="Effective with -M" />
+        <param argument="-X" type="integer" value="255" label="mask bases with quality higher than INT"/>
+        <param argument="-n" type="text" value="0" label="masked bases converted to CHAR; 0 for lowercase" />
+        <param argument="-l" type="integer" value="0" label="number of residues per line; 0 for 2^32-1" />
+        <param argument="-Q" type="integer" value="33" label="quality shift: ASCII-INT gives base quality" />
+        <param argument="-s" type="integer" label="random seed" help="effective with -f" />
+        <param argument="-M" type="data" format="bed,txt" optional="true" label="mask regions in BED or name list FILE" />
+        <param argument="-L" type="integer" value="0" label="drop sequences with length shorter than INT" />
+        <param argument="-r" type="boolean" truevalue="-r" falsevalue="" checked="false" label="reverse complement" />
+        <param argument="-A" type="boolean" truevalue="-A" falsevalue="" checked="false" label="force FASTA output (discard quality)" />
+        <param argument="-C" type="boolean" truevalue="-C" falsevalue="" checked="false" value="false" label="drop comments at the header lines"/>
+        <param argument="-N" type="boolean" truevalue="-N" falsevalue="" checked="false" label="drop sequences containing ambiguous bases" />
+        <param name="x1" argument="-1" type="boolean" truevalue="-1" falsevalue="" checked="false" label="output the 2n-1 reads only" />
+        <param name="x2" argument="-2" type="boolean" truevalue="-2" falsevalue="" checked="false" label="output the 2n reads only" />
+    </inputs>
+    <outputs>
+        <data name="output1" format="fasta" />
+    </outputs>
+    <tests>
+        <!-- Test 01: default parameters -->
+        <test expect_num_outputs="1">
+            <param name="input1" value="dataset_01.fastq"/>
+            <param name="q" value="0"/>
+            <param name="f" value="1"/>
+            <param name="c" value="false"/>
+            <param name="X" value="255"/>
+            <param name="n" value="0"/>
+            <param name="l" value="0"/>
+            <param name="Q" value="33"/>
+            <param name="s" value="11"/> <!--fix 11, was empty-->
+            <param name="M" value=""/>
+            <param name="L" value="0"/>
+            <param name="r" value="false"/>
+            <param name="A" value="true"/>
+            <param name="C" value="false"/>
+            <param name="N" value="false"/>
+            <param name="x1" value="false"/>
+            <param name="x2" value="false"/>
+            <output name="output1">
+                <assert_contents>
+                    <has_text text="SRR1294492.1768716/1"/>
+                    <has_size value="430" delta="10"/>
+                </assert_contents>
+            </output>
+        </test>
+        <!-- Test 02: default parameters output file-->
+        <test expect_num_outputs="1">
+            <param name="input1" value="dataset_01.fastq"/>
+            <param name="q" value="0"/>
+            <param name="f" value="1"/>
+            <param name="c" value="false"/>
+            <param name="X" value="255"/>
+            <param name="n" value="0"/>
+            <param name="l" value="0"/>
+            <param name="Q" value="33"/>
+            <param name="s" value="11"/> <!--fix 11, was empty-->
+            <param name="M" value=""/>
+            <param name="L" value="0"/>
+            <param name="r" value="false"/>
+            <param name="A" value="true"/>
+            <param name="C" value="false"/>
+            <param name="N" value="false"/>
+            <param name="x1" value="false"/>
+            <param name="x2" value="false"/>
+            <output name="output1" value="test_01.fasta" ftype="fasta" />
+        </test>
+    </tests>
+    <help><![CDATA[
+        
+Usage:   seqtk seq [options] <in.fq>|<in.fa>
+
+Options: -q INT    mask bases with quality lower than INT [0]
+         -X INT    mask bases with quality higher than INT [255]
+         -n CHAR   masked bases converted to CHAR; 0 for lowercase [0]
+         -l INT    number of residues per line; 0 for 2^32-1 [0]
+         -Q INT    quality shift: ASCII-INT gives base quality [33]
+         -s INT    random seed (effective with -f) [11]
+         -f FLOAT  sample FLOAT fraction of sequences [1]
+         -M FILE   mask regions in BED or name list FILE [null]
+         -L INT    drop sequences with length shorter than INT [0]
+         -F CHAR   fake FASTQ quality []
+         -c        mask complement region (effective with -M)
+         -r        reverse complement
+         -A        force FASTA output (discard quality)
+         -C        drop comments at the header lines
+         -N        drop sequences containing ambiguous bases
+         -1        output the 2n-1 reads only
+         -2        output the 2n reads only
+         -V        shift quality by '(-Q) - 33'
+         -U        convert all bases to uppercases
+         -x        convert all lowercases to -n
+         -S        strip of white spaces in sequences
+
+
+    ]]></help>
+    <expand macro="citations" />
+</tool>
