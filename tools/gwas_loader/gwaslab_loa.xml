@@ -1,0 +1,29 @@
+<tool id="gwaslab_loader" name="GWASLab Summary Loader" version="0.1.1">
+    <description>Load and inspect PLINK2 Firth GWAS summary stats</description>
+
+    <requirements>
+        <requirement type="package" version="3.9.2">python</requirement>
+        <requirement type="package">gwaslab</requirement>
+        <requirement type="package">pandas</requirement>
+    </requirements>
+
+    <command><![CDATA[
+python '$__tool_directory__/gwaslab_loader.py' --input '$sumstats' --output '$out_summary'
+    ]]></command>
+
+    <inputs>
+        <param name="sumstats" type="data" format="csv" label="GWAS Summary Stats (.csv)"/>
+    </inputs>
+
+    <outputs>
+        <data name="out_summary" format="txt" label="GWASLab Summary Report"/>
+    </outputs>
+
+    <help><![CDATA[
+This tool loads a GWAS summary statistics file in PLINK2 Firth format using GWASLab and shows the basic structure of the data.
+
+You must upload a `.csv` file (use `csv` datatype), usually exported from `plink2` like `.glm.firth`.
+
+The tool outputs a summary of columns and data types.
+    ]]></help>
+</tool>

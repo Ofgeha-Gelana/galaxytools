@@ -1,0 +1,31 @@
+<tool id="gwaslab_tool" name="GWASLab Summary" version="0.1.0">
+    <description>Summarize GWAS results with gwaslab</description>
+
+    <requirements>
+        <requirement type="package" version="3.9.2">python</requirement>
+        <requirement type="package">pip</requirement>
+    </requirements>
+
+    <container>
+        <resolver type="conda"/>
+    </container>
+
+    <command detect_errors="exit_code">
+        <![CDATA[
+        pip install gwaslab && python load_sumstats.py "$input"
+        ]]>
+    </command>
+
+    <inputs>
+        <param name="sumstats" type="data" format="csv" label="GWAS summary statistics (gzipped)"/>
+    </inputs>
+
+
+    <outputs>
+        <data name="output" format="txt" from_work_dir="summary.txt" label="GWASLab Summary Output"/>
+    </outputs>
+
+    <help>
+        This tool loads and summarizes GWAS summary statistics using gwaslab.
+    </help>
+</tool>

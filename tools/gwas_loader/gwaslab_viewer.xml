@@ -1,0 +1,32 @@
+<tool id="gwaslab_viewer" name="GWASLab Viewer" version="0.1">
+    <requirements>
+        <requirement type="package" version="3.9.2">python</requirement>
+        <requirement type="package">gwaslab</requirement>
+        <requirement type="package">numpy</requirement>
+        <requirement type="package">pandas</requirement>
+        <requirement type="package">matplotlib</requirement>
+        <requirement type="package">seaborn</requirement>
+    </requirements>
+
+    <command><![CDATA[
+        python '$__tool_directory__/gwaslab_viewer.py' '$sumstats' '$output'
+    ]]></command>
+
+    <inputs>
+        <param name="sumstats" type="data" format="csv" label="GWAS summary statistics (gzipped)"/>
+    </inputs>
+
+    <outputs>
+        <data name="output" format="png" label="P-value Histogram"/>
+    </outputs>
+
+    <help><![CDATA[
+This tool visualizes a P-value distribution from GWAS summary statistics using gwaslab.
+
+Inputs:
+- A gzipped summary stats file in PLINK2 format.
+
+Outputs:
+- A histogram image of P-values.
+    ]]></help>
+</tool>
